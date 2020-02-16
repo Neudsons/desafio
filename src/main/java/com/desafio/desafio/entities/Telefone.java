@@ -1,41 +1,43 @@
 package com.desafio.desafio.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_usuario")
-public class Usuario implements Serializable {	
+@Table(name = "tb_telefone")
+public class Telefone implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;	
-	private String nome;
-	private String email;
-	private String password;
+	private Long id;
+	private Integer ddd;
+	private String numero;
+	private String tipo;
 	
-	@OneToMany(mappedBy = "usuariofone")
-	private List<Telefone> telefones = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name = "usuariofone_id")
+	private Usuario usuariofone;
 	
-	
-	public Usuario() {		
+	public Telefone() {
+		
 	}
 
-	public Usuario(Long id, String nome, String email, String password) {
+	public Telefone(Long id, Integer ddd, String numero, String tipo) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.password = password;
+		this.ddd = ddd;
+		this.numero = numero;
+		this.tipo = tipo;
+		
 	}
 
 	public Long getId() {
@@ -46,35 +48,30 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Integer getDdd() {
+		return ddd;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDdd(Integer ddd) {
+		this.ddd = ddd;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getNumero() {
+		return numero;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
-	public List<Telefone> getTelefones() {
-		return telefones;
-	}
-		
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -91,7 +88,7 @@ public class Usuario implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Telefone other = (Telefone) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -99,8 +96,9 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
-
-
+	
+	
+	
 	
 
 }
