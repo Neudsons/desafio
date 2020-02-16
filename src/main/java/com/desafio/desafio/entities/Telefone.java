@@ -31,12 +31,14 @@ public class Telefone implements Serializable {
 		
 	}
 
-	public Telefone(Long id, Integer ddd, String numero, String tipo) {
+	public Telefone(Long id, Integer ddd, String numero, String tipo, Usuario usuariofone) {
 		super();
 		this.id = id;
 		this.ddd = ddd;
 		this.numero = numero;
 		this.tipo = tipo;
+		this.usuariofone = usuariofone;
+		
 		
 	}
 
@@ -71,6 +73,7 @@ public class Telefone implements Serializable {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
 
 	@Override
 	public int hashCode() {
